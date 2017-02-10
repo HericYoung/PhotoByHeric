@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Photo By Heric</title>
+
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- font awesome -->
+    <link href="{$Think.const.HOME_CSS_URL}font-awesome.min.css" rel="stylesheet">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="{$Think.const.HOME_ASSETS_URL}bootstrap/css/bootstrap.min.css" />
+
+    <!-- animate.css -->
+    <link rel="stylesheet" href="{$Think.const.HOME_ASSETS_URL}animate/animate.css" />
+    <link rel="stylesheet" href="{$Think.const.HOME_ASSETS_URL}animate/set.css" />
+
+    <!-- gallery -->
+    <link rel="stylesheet" href="{$Think.const.HOME_ASSETS_URL}gallery/blueimp-gallery.min.css">
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{$Think.const.HOME_IMG_URL}camera.ico" type="image/x-icon">
+    <link rel="icon" href="{$Think.const.HOME_IMG_URL}camera.ico" type="image/x-icon">
+
+
+    <link rel="stylesheet" href="{$Think.const.HOME_ASSETS_URL}style.css">
+
+</head>
+
+<body>
+<div class="topbar animated fadeInLeftBig"></div>
+
+<!-- Header Starts -->
+<div class="navbar-wrapper">
+    <div class="container">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation" id="top-nav"  style="text-align: center;background-color: #000000;border-color: #000000;">
+            <div class="container"  style=" text-align: center;margin-top: 12px;margin-bottom: 12px;">
+                <div style="margin:0 auto">
+                    <!-- Logo Starts -->
+                    <a href="#"><img src="{$Think.const.HOME_IMG_URL}logo.png" alt="logo"></a>
+                    <!-- #Logo Ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- #Header Starts -->
+
+<!-- works -->
+<div id="works"  class="clearfix grid" style="background-color: #000000">
+    <foreach name="albumList" item="album">
+        <figure class="effect-oscar  wowload fadeIn">
+            <img src="{$Think.const.ALBUM_URL}{$album['album_id']}/thumbnail.jpg" alt="{$album['album_id']}"/>
+            <figcaption>
+                <p><br>
+                    <a href="{$Think.const.ALBUM_URL}{$album['album_id']}/{$album['cover_name']}.jpg" title="{$album['cover_name']}" onclick="showAlbum(this);">{$album['amount']}张照片</a>
+
+                    <foreach name="photoList" item="photo">
+                        <if condition="($photo['album_id'] eq $album['album_id'] AND $photo['name'] neq $album['cover_name'])">
+                            <a style="display:none" href="{$Think.const.ALBUM_URL}{$album['album_id']}/{$photo['name']}.jpg" title="{$photo['name']}"></a>
+                        </if>
+                    </foreach>
+                </p>
+            </figcaption>
+        </figure>
+    </foreach>
+</div>
+<!-- works -->
+
+
+
+
+<!-- About Starts -->
+<div class="highlight-info">
+    <div class="overlay spacer">
+        <div class="container">
+            <div class="row text-center  wowload fadeInDownBig">
+                <div class="col-sm-3 col-xs-6">
+                    <i class="fa fa-book  fa-5x"></i><h4>{$albumAmount}个相册</h4>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <i class="fa fa-photo  fa-5x"></i><h4>{$photoAmount}张照片</h4>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <i class="fa fa-user fa-5x"></i><h4>{$visits}次访问</h4>
+                </div>
+                <div class="col-sm-3 col-xs-6">
+                    <i class="fa fa-camera fa-5x"></i><h4>EOS 750D</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About Ends -->
+
+
+<!-- Footer Starts -->
+<div class="footer text-center spacer">
+    <p class="wowload flipInX">
+        <a href="#">
+            <i class="fa fa-facebook fa-2x"></i>
+        </a>
+        <a href="#">
+            <i class="fa fa-instagram fa-2x"></i>
+        </a>
+        <a href="#">
+            <i class="fa fa-twitter fa-2x"></i>
+        </a>
+        <a href="#">
+            <i class="fa fa-weixin fa-2x"></i>
+        </a>
+    </p>
+    Photo By Heric
+</div>
+<!-- # Footer Ends -->
+<a href="#works" class="gototop "><i class="fa fa-angle-up  fa-3x"></i></a>
+
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title">Title</h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+</div>
+
+
+<!-- jquery -->
+<script src="{$Think.const.HOME_ASSETS_URL}jquery.js"></script>
+
+<script type="text/javascript">
+    function showAlbum(obj){
+        $('a').removeAttr('data-gallery');
+        $(obj).parent().find('a').attr('data-gallery','');
+    }
+</script>
+
+<!-- wow script -->
+<script src="{$Think.const.HOME_ASSETS_URL}wow/wow.min.js"></script>
+
+
+<!-- boostrap -->
+<script src="{$Think.const.HOME_ASSETS_URL}bootstrap/js/bootstrap.js" type="text/javascript" ></script>
+
+<!-- jquery mobile -->
+<script src="{$Think.const.HOME_ASSETS_URL}mobile/touchSwipe.min.js"></script>
+<script src="{$Think.const.HOME_ASSETS_URL}respond/respond.js"></script>
+
+<!-- gallery -->
+<script src="{$Think.const.HOME_ASSETS_URL}gallery/jquery.blueimp-gallery.min.js"></script>
+
+<!-- custom script -->
+<script src="{$Think.const.HOME_ASSETS_URL}script.js"></script>
+
+</body>
+</html>

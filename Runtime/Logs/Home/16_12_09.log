@@ -1,0 +1,6 @@
+[ 2016-12-09T02:33:35+08:00 ] 127.0.0.1 /PHPWebSite/PhotoByHeric/
+ERR: 1065:Query was empty
+
+[ 2016-12-09T23:17:39+08:00 ] 127.0.0.1 /PHPWebSite/PhotoByHeric/
+ERR: XML标签语法错误 : condition="($photo['album_id'] eq $album['album_id'] AND $photo['name'] neq 'cover'")
+
